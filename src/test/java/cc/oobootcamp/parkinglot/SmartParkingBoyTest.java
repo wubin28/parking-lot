@@ -12,7 +12,7 @@ class SmartParkingBoyTest {
     @Test
     void should_return_a_valid_ticket_when_park_a_car_given_a_parking_lot_with_a_space() {
         ParkingLot parkingLot = new ParkingLot(1);
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
         Car car = new Car();
 
         Ticket ticket = parkingBoy.park(car);
@@ -27,7 +27,7 @@ class SmartParkingBoyTest {
         ParkingLot parkingLot2 = new ParkingLot(5);
         parkingLot2.park(new Car());
 
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLot1, parkingLot2);
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLot1, parkingLot2);
         Car car1 = new Car();
 
         Ticket ticket1 = parkingBoy.park(car1);
@@ -44,7 +44,7 @@ class SmartParkingBoyTest {
 
         ParkingLot parkingLot2 = new ParkingLot(5);
 
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLot1, parkingLot2);
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLot1, parkingLot2);
         Car car = new Car();
 
         Ticket ticket = parkingBoy.park(car);
@@ -59,7 +59,7 @@ class SmartParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(3);
         ParkingLot parkingLot2 = new ParkingLot(3);
 
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLot1, parkingLot2);
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLot1, parkingLot2);
         Car car1 = new Car();
         Car car2 = new Car();
         Car car3 = new Car();
@@ -86,7 +86,7 @@ class SmartParkingBoyTest {
         parkingLot2.park(new Car());
         parkingLot2.park(new Car());
 
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLot1, parkingLot2);
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLot1, parkingLot2);
 
         assertThrows(ParkingLotFullException.class, () -> parkingBoy.park(new Car()));
     }
@@ -94,7 +94,7 @@ class SmartParkingBoyTest {
     @Test
     void should_pick_my_car_when_pick_with_my_ticket_given_a_parking_lot_with_my_car_parked() {
         ParkingLot parkingLot = new ParkingLot(1);
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
 
         Car myCar = new Car();
         Ticket ticket = parkingBoy.park(myCar);
@@ -106,7 +106,7 @@ class SmartParkingBoyTest {
     void should_pick_my_car_from_first_when_pick_with_my_ticket_given_multiple_parking_lot_with_cars_parked() {
         ParkingLot parkingLot1 = new ParkingLot(2);
         ParkingLot parkingLot2 = new ParkingLot(2);
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLot1, parkingLot2);
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLot1, parkingLot2);
 
         Car myCar = new Car();
         Ticket ticket = parkingBoy.park(myCar);
@@ -120,7 +120,7 @@ class SmartParkingBoyTest {
     void should_pick_my_car_from_second_when_pick_with_my_ticket_given_multiple_parking_lot_with_cars_parked() {
         ParkingLot parkingLot1 = new ParkingLot(2);
         ParkingLot parkingLot2 = new ParkingLot(2);
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLot1, parkingLot2);
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLot1, parkingLot2);
         parkingBoy.park(new Car());
 
         Car myCar = new Car();
@@ -133,7 +133,7 @@ class SmartParkingBoyTest {
     @Test
     void should_fail_when_pick_with_null_ticket_given_parking_lot_with_cars_parked_in() {
         ParkingLot parkingLot = new ParkingLot(2);
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
         parkingBoy.park(new Car());
         assertThrows(TicketInvalidException.class, () -> parkingBoy.pick(null));
     }
@@ -141,7 +141,7 @@ class SmartParkingBoyTest {
     @Test
     void should_fail_when_pick_with_invalid_ticket_given_parking_lot_with_cars_parked_in() {
         ParkingLot parkingLot = new ParkingLot(2);
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
         parkingBoy.park(new Car());
 
         assertThrows(TicketInvalidException.class, () -> parkingBoy.pick(new Ticket()));
@@ -150,7 +150,7 @@ class SmartParkingBoyTest {
     @Test
     void should_fail_when_pick_twice_given_parking_lot_with_cars_parked_in() {
         ParkingLot parkingLot = new ParkingLot(2);
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
         Ticket ticket = parkingBoy.park(new Car());
 
         parkingBoy.pick(ticket);

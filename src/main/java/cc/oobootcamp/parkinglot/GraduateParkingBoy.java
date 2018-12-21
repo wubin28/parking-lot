@@ -1,19 +1,14 @@
 package cc.oobootcamp.parkinglot;
 
 import cc.oobootcamp.parkinglot.exception.ParkingLotFullException;
-import cc.oobootcamp.parkinglot.exception.TicketInvalidException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class GraduateParkingBoy {
-    private List<ParkingLot> parkingLots = new ArrayList<>();
+public class GraduateParkingBoy extends ParkingBoy {
 
     public GraduateParkingBoy(ParkingLot... parkingLots) {
-        this.parkingLots.addAll(Arrays.asList(parkingLots));
+        super(parkingLots);
     }
 
+    @Override
     public Ticket park(Car car) {
         for (ParkingLot parkingLot : parkingLots) {
             if (!parkingLot.isFull()) {
@@ -23,12 +18,4 @@ public class GraduateParkingBoy {
         throw new ParkingLotFullException();
     }
 
-    public Car pick(Ticket ticket) {
-        for (ParkingLot parkingLot : parkingLots) {
-            if (parkingLot.contains(ticket)) {
-                return parkingLot.pick(ticket);
-            }
-        }
-        throw new TicketInvalidException();
-    }
 }
