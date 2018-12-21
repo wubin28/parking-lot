@@ -1,5 +1,7 @@
 package cc.oobootcamp.parkinglot;
 
+import cc.oobootcamp.parkinglot.exception.ParkingLotFullException;
+
 import java.util.Comparator;
 
 public class SuperParkingBoy extends ParkingBoy {
@@ -10,10 +12,10 @@ public class SuperParkingBoy extends ParkingBoy {
 
     @Override
     public Ticket park(Car car) {
-        ParkingLot parkingLot = parkingLots.stream()
-                .max(Comparator.comparingDouble(ParkingLot::vacancyRate)).get();
-
-        return parkingLot.park(car);
+        return parkingLots.stream()
+                .max(Comparator.comparingDouble(ParkingLot::vacancyRate))
+                .filter(parkingLot1 -> !parkingLot1.isFull())
+                .orElseThrow(ParkingLotFullException::new).park(car);
     }
 
 }
