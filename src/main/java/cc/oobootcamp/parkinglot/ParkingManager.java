@@ -34,7 +34,9 @@ public class ParkingManager {
 
     public Car pick(Ticket ticket) {
         for (ParkingLot parkingLot : parkingLots) {
-            return parkingLot.pick(ticket);
+            if (parkingLot.contains(ticket)) {
+                return parkingLot.pick(ticket);
+            }
         }
         return null;
     }
