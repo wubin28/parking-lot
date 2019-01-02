@@ -3,13 +3,19 @@ package cc.oobootcamp.parkinglot;
 import cc.oobootcamp.parkinglot.exception.ParkingLotFullException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ParkingManager {
     private List<ParkingLot> parkingLots = new ArrayList<>();
+    private List<ParkingBoy> parkingBoys = new ArrayList<>();
 
-    public ParkingManager(List<ParkingLot> parkingLots) {
-        this.parkingLots.addAll(parkingLots);
+    public ParkingManager(ParkingLot... parkingLots) {
+        this.parkingLots.addAll(Arrays.asList(parkingLots));
+    }
+
+    public ParkingManager(ParkingBoy... parkingBoys) {
+        this.parkingBoys.addAll(Arrays.asList(parkingBoys));
     }
 
     public Ticket park(Car car) {
@@ -17,6 +23,9 @@ public class ParkingManager {
             if (!parkingLot.isFull()) {
                 return parkingLot.park(car);
             }
+        }
+        for (ParkingBoy parkingBoy : parkingBoys) {
+            return parkingBoy.park(car);
         }
         throw new ParkingLotFullException();
     }
