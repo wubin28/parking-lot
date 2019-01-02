@@ -31,4 +31,11 @@ public class ParkingManager {
         }
         throw new ParkingLotFullException();
     }
+
+    public Car pick(Ticket ticket) {
+        for (ParkingLot parkingLot : parkingLots) {
+            return parkingLot.pick(ticket);
+        }
+        return null;
+    }
 }
