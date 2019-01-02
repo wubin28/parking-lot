@@ -1,6 +1,7 @@
 package cc.oobootcamp.parkinglot;
 
 import cc.oobootcamp.parkinglot.exception.ParkingLotFullException;
+import cc.oobootcamp.parkinglot.exception.TicketInvalidException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -129,4 +130,28 @@ class ParkingManagerTest {
 
         assertSame(myCar, parkingManager.pick(ticket));
     }
+
+    @Test
+    void should_throw_exception_when_pick_with_invalid_ticket_given_parking_lot_contains_my_car() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.park(new Car());
+
+        ParkingManager parkingManager = new ParkingManager(parkingLot);
+
+        assertThrows(TicketInvalidException.class, () -> parkingManager.pick(new Ticket()));
+        assertThrows(TicketInvalidException.class, () -> parkingManager.pick(null));
+    }
+
+    @Test
+    void should_throw_exception_when_pick_with_invalid_ticket_given_parking_boy_whose_parking_lot_contains_my_car() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.park(new Car());
+        ParkingBoy superParkingBoy = new SuperParkingBoy(parkingLot);
+
+        ParkingManager parkingManager = new ParkingManager(superParkingBoy);
+
+        assertThrows(TicketInvalidException.class, () -> parkingManager.pick(new Ticket()));
+        assertThrows(TicketInvalidException.class, () -> parkingManager.pick(null));
+    }
+
 }
