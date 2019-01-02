@@ -1,7 +1,6 @@
 package cc.oobootcamp.parkinglot;
 
 import cc.oobootcamp.parkinglot.exception.ParkingLotFullException;
-import cc.oobootcamp.parkinglot.exception.TicketInvalidException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,7 +11,7 @@ class SuperParkingBoyTest {
     @Test
     void should_return_a_valid_ticket_when_park_a_car_given_a_parking_lot_with_a_space() {
         ParkingLot parkingLot = new ParkingLot(1);
-        ParkingBoy parkingBoy = new SuperParkingBoy(parkingLot);
+        Parkable parkingBoy = new SuperParkingBoy(parkingLot);
         Car car = new Car();
 
         Ticket ticket = parkingBoy.park(car);
@@ -30,7 +29,7 @@ class SuperParkingBoyTest {
         parkingLot2.park(new Car());
         parkingLot2.park(new Car());
 
-        ParkingBoy parkingBoy = new SuperParkingBoy(parkingLot1, parkingLot2);
+        Parkable parkingBoy = new SuperParkingBoy(parkingLot1, parkingLot2);
         Car car1 = new Car();
 
         Ticket ticket1 = parkingBoy.park(car1);
@@ -49,7 +48,7 @@ class SuperParkingBoyTest {
         ParkingLot parkingLot2 = new ParkingLot(2);
         parkingLot2.park(new Car());
 
-        ParkingBoy parkingBoy = new SuperParkingBoy(parkingLot1, parkingLot2);
+        Parkable parkingBoy = new SuperParkingBoy(parkingLot1, parkingLot2);
         Car car1 = new Car();
 
         Ticket ticket1 = parkingBoy.park(car1);
@@ -67,7 +66,7 @@ class SuperParkingBoyTest {
         ParkingLot parkingLot2 = new ParkingLot(3);
         parkingLot2.park(new Car());
 
-        ParkingBoy parkingBoy = new SuperParkingBoy(parkingLot1, parkingLot2);
+        Parkable parkingBoy = new SuperParkingBoy(parkingLot1, parkingLot2);
         Car car1 = new Car();
 
         Ticket ticket1 = parkingBoy.park(car1);
@@ -85,7 +84,7 @@ class SuperParkingBoyTest {
         ParkingLot parkingLot2 = new ParkingLot(1);
         parkingLot2.park(new Car());
 
-        ParkingBoy parkingBoy = new SuperParkingBoy(parkingLot1, parkingLot2);
+        Parkable parkingBoy = new SuperParkingBoy(parkingLot1, parkingLot2);
 
         assertThrows(ParkingLotFullException.class, () -> parkingBoy.park(new Car()));
     }

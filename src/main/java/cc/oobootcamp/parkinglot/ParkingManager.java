@@ -8,44 +8,27 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ParkingManager {
-    private List<ParkingLot> parkingLots = new ArrayList<>();
-    private List<ParkingBoy> parkingBoys = new ArrayList<>();
+    private List<Parkable> parkables = new ArrayList<>();
 
-    public ParkingManager(ParkingLot... parkingLots) {
-        this.parkingLots.addAll(Arrays.asList(parkingLots));
-    }
-
-    public ParkingManager(ParkingBoy... parkingBoys) {
-        this.parkingBoys.addAll(Arrays.asList(parkingBoys));
+    public ParkingManager(Parkable... parkingBoys) {
+        this.parkables.addAll(Arrays.asList(parkingBoys));
     }
 
     public Ticket park(Car car) {
-        for (ParkingLot parkingLot : parkingLots) {
-            if (!parkingLot.isFull()) {
-                return parkingLot.park(car);
-            }
-        }
-        for (ParkingBoy parkingBoy : parkingBoys) {
-            if (!parkingBoy.isFull()) {
-                return parkingBoy.park(car);
+        for (Parkable parkable : parkables) {
+            if (!parkable.isFull()) {
+                return parkable.park(car);
             }
         }
         throw new ParkingLotFullException();
     }
 
     public Car pick(Ticket ticket) {
-        for (ParkingLot parkingLot : parkingLots) {
-            if (parkingLot.contains(ticket)) {
-                return parkingLot.pick(ticket);
-            }
-        }
-
-        for (ParkingBoy parkingBoy : parkingBoys) {
-            if (parkingBoy.contains(ticket)) {
-                return parkingBoy.pick(ticket);
+        for (Parkable parkable : parkables) {
+            if (parkable.contains(ticket)) {
+                return parkable.pick(ticket);
             }
         }
         throw new TicketInvalidException();
     }
-
 }

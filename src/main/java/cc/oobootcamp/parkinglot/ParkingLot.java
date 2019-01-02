@@ -6,7 +6,7 @@ import cc.oobootcamp.parkinglot.exception.TicketInvalidException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParkingLot {
+public class ParkingLot implements Parkable{
     private int space;
     private Map<Ticket, Car> parkedCars = new HashMap<>();
 
@@ -23,7 +23,7 @@ public class ParkingLot {
         return ticket;
     }
 
-    boolean isFull() {
+    public boolean isFull() {
         return parkedCars.size() >= space;
     }
 
