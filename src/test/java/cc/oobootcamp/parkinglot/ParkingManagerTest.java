@@ -52,4 +52,20 @@ class ParkingManagerTest {
         Ticket ticket = parkingManager.park(car);
         assertSame(car, parkingLot2.pick(ticket));
     }
+
+    @Test
+    void should_throw_exception_when_park_given_both_parking_lots_are_full_managed_by_parking_boy() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.park(new Car());
+
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        parkingLot2.park(new Car());
+
+        ParkingBoy superParkingBoy = new SuperParkingBoy(parkingLot);
+        ParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLot2);
+
+        ParkingManager parkingManager = new ParkingManager(superParkingBoy, smartParkingBoy);
+
+        assertThrows(ParkingLotFullException.class, () -> parkingManager.park(new Car()));
+    }
 }
