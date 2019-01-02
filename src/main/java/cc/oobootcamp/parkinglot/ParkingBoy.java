@@ -1,7 +1,5 @@
 package cc.oobootcamp.parkinglot;
 
-import cc.oobootcamp.parkinglot.exception.TicketInvalidException;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,17 +13,12 @@ public abstract class ParkingBoy implements ParkingAble {
 
     @Override
     public Car pick(Ticket ticket) {
-        for (ParkingLot parkingLot : parkingLots) {
-            if (parkingLot.contains(ticket)) {
-                return parkingLot.pick(ticket);
-            }
-        }
-        throw new TicketInvalidException();
+        return ParkingService.pick(parkingLots, ticket);
     }
 
     @Override
     public boolean isFull() {
-        return parkingLots.stream().allMatch(ParkingLot::isFull);
+        return parkingLots.stream().allMatch(ParkingAble::isFull);
     }
 
     @Override

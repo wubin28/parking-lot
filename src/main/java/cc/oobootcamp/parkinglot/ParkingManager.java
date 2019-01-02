@@ -1,7 +1,6 @@
 package cc.oobootcamp.parkinglot;
 
 import cc.oobootcamp.parkinglot.exception.ParkingLotFullException;
-import cc.oobootcamp.parkinglot.exception.TicketInvalidException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,11 +23,6 @@ public class ParkingManager {
     }
 
     public Car pick(Ticket ticket) {
-        for (ParkingAble parkingAble : parkingAbles) {
-            if (parkingAble.contains(ticket)) {
-                return parkingAble.pick(ticket);
-            }
-        }
-        throw new TicketInvalidException();
+        return ParkingService.pick(parkingAbles, ticket);
     }
 }
