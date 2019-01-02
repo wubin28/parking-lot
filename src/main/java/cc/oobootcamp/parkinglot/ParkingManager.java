@@ -1,5 +1,7 @@
 package cc.oobootcamp.parkinglot;
 
+import cc.oobootcamp.parkinglot.exception.ParkingLotFullException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,6 @@ public class ParkingManager {
                 return parkingLot.park(car);
             }
         }
-        return null;
+        throw new ParkingLotFullException();
     }
 }
