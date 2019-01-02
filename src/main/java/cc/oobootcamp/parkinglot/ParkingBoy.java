@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class ParkingBoy implements Parkable {
+public abstract class ParkingBoy implements ParkingAble {
     protected List<ParkingLot> parkingLots = new ArrayList<>();
 
     public ParkingBoy(ParkingLot... parkingLots) {

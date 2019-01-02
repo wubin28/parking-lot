@@ -8,25 +8,25 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ParkingManager {
-    private List<Parkable> parkables = new ArrayList<>();
+    private List<ParkingAble> parkingAbles = new ArrayList<>();
 
-    public ParkingManager(Parkable... parkingBoys) {
-        this.parkables.addAll(Arrays.asList(parkingBoys));
+    public ParkingManager(ParkingAble... parkingBoys) {
+        this.parkingAbles.addAll(Arrays.asList(parkingBoys));
     }
 
     public Ticket park(Car car) {
-        for (Parkable parkable : parkables) {
-            if (!parkable.isFull()) {
-                return parkable.park(car);
+        for (ParkingAble parkingAble : parkingAbles) {
+            if (!parkingAble.isFull()) {
+                return parkingAble.park(car);
             }
         }
         throw new ParkingLotFullException();
     }
 
     public Car pick(Ticket ticket) {
-        for (Parkable parkable : parkables) {
-            if (parkable.contains(ticket)) {
-                return parkable.pick(ticket);
+        for (ParkingAble parkingAble : parkingAbles) {
+            if (parkingAble.contains(ticket)) {
+                return parkingAble.pick(ticket);
             }
         }
         throw new TicketInvalidException();

@@ -11,7 +11,7 @@ class ParkingManagerTest {
 
     @Test
     void should_return_ticket_when_park_given_parking_lot_has_space_and_no_parking_boy() {
-        Parkable parkingLot = new ParkingLot(1);
+        ParkingAble parkingLot = new ParkingLot(1);
         ParkingManager parkingManager = new ParkingManager(parkingLot);
         Car car = new Car();
         Ticket ticket = parkingManager.park(car);
@@ -21,7 +21,7 @@ class ParkingManagerTest {
 
     @Test
     void should_throw_exception_when_park_given_parking_lot_is_full_and_no_parking_boy() {
-        Parkable parkingLot = new ParkingLot(1);
+        ParkingAble parkingLot = new ParkingLot(1);
         parkingLot.park(new Car());
 
         ParkingManager parkingManager = new ParkingManager(parkingLot);
@@ -32,7 +32,7 @@ class ParkingManagerTest {
     @Test
     void should_park_successfully_when_park_given_parking_boy_managed_parking_lot_has_space() {
         ParkingLot parkingLot = new ParkingLot(1);
-        Parkable parkingBoy = new SuperParkingBoy(parkingLot);
+        ParkingAble parkingBoy = new SuperParkingBoy(parkingLot);
 
         ParkingManager parkingManager = new ParkingManager(parkingBoy);
         Car car = new Car();
@@ -47,8 +47,8 @@ class ParkingManagerTest {
 
         ParkingLot parkingLot2 = new ParkingLot(1);
 
-        Parkable superParkingBoy = new SuperParkingBoy(parkingLot);
-        Parkable smartParkingBoy = new SmartParkingBoy(parkingLot2);
+        ParkingAble superParkingBoy = new SuperParkingBoy(parkingLot);
+        ParkingAble smartParkingBoy = new SmartParkingBoy(parkingLot2);
 
         ParkingManager parkingManager = new ParkingManager(superParkingBoy, smartParkingBoy);
         Car car = new Car();
@@ -64,8 +64,8 @@ class ParkingManagerTest {
         ParkingLot parkingLot2 = new ParkingLot(1);
         parkingLot2.park(new Car());
 
-        Parkable superParkingBoy = new SuperParkingBoy(parkingLot);
-        Parkable smartParkingBoy = new SmartParkingBoy(parkingLot2);
+        ParkingAble superParkingBoy = new SuperParkingBoy(parkingLot);
+        ParkingAble smartParkingBoy = new SmartParkingBoy(parkingLot2);
 
         ParkingManager parkingManager = new ParkingManager(superParkingBoy, smartParkingBoy);
 
@@ -74,7 +74,7 @@ class ParkingManagerTest {
 
     @Test
     void should_pick_my_car_when_pick_given_a_parking_lot_contains_my_car() {
-        Parkable parkingLot = new ParkingLot(2);
+        ParkingAble parkingLot = new ParkingLot(2);
         parkingLot.park(new Car());
         Car myCar = new Car();
         Ticket ticket = parkingLot.park(myCar);
@@ -86,8 +86,8 @@ class ParkingManagerTest {
 
     @Test
     void should_pick_my_car_when_pick_given_multiple_parking_lots_contains_my_car() {
-        Parkable parkingLot = new ParkingLot(2);
-        Parkable parkingLot2 = new ParkingLot(2);
+        ParkingAble parkingLot = new ParkingLot(2);
+        ParkingAble parkingLot2 = new ParkingLot(2);
         parkingLot.park(new Car());
         parkingLot2.park(new Car());
 
@@ -107,7 +107,7 @@ class ParkingManagerTest {
         parkingLot.park(new Car());
         Ticket ticket = parkingLot.park(myCar);
 
-        Parkable superParkingBoy = new SuperParkingBoy(parkingLot);
+        ParkingAble superParkingBoy = new SuperParkingBoy(parkingLot);
 
         ParkingManager parkingManager = new ParkingManager(superParkingBoy);
 
@@ -123,8 +123,8 @@ class ParkingManagerTest {
         Car myCar = new Car();
         Ticket ticket = parkingLot2.park(myCar);
 
-        Parkable superParkingBoy = new SuperParkingBoy(parkingLot);
-        Parkable smartParkingBoy = new SmartParkingBoy(parkingLot2);
+        ParkingAble superParkingBoy = new SuperParkingBoy(parkingLot);
+        ParkingAble smartParkingBoy = new SmartParkingBoy(parkingLot2);
 
 
         ParkingManager parkingManager = new ParkingManager(superParkingBoy, smartParkingBoy);
@@ -134,7 +134,7 @@ class ParkingManagerTest {
 
     @Test
     void should_throw_exception_when_pick_with_invalid_ticket_given_parking_lot_contains_my_car() {
-        Parkable parkingLot = new ParkingLot(1);
+        ParkingAble parkingLot = new ParkingLot(1);
         parkingLot.park(new Car());
 
         ParkingManager parkingManager = new ParkingManager(parkingLot);
@@ -147,7 +147,7 @@ class ParkingManagerTest {
     void should_throw_exception_when_pick_with_invalid_ticket_given_parking_boy_whose_parking_lot_contains_my_car() {
         ParkingLot parkingLot = new ParkingLot(1);
         parkingLot.park(new Car());
-        Parkable superParkingBoy = new SuperParkingBoy(parkingLot);
+        ParkingAble superParkingBoy = new SuperParkingBoy(parkingLot);
 
         ParkingManager parkingManager = new ParkingManager(superParkingBoy);
 

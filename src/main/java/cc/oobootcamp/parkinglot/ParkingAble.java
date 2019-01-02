@@ -1,6 +1,6 @@
 package cc.oobootcamp.parkinglot;
 
-public interface Parkable {
+public interface ParkingAble {
     Ticket park(Car car);
 
     Car pick(Ticket ticket);
