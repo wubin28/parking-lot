@@ -23,4 +23,8 @@ public abstract class ParkingBoy {
         }
         throw new TicketInvalidException();
     }
+
+    public boolean isFull() {
+        return parkingLots.stream().allMatch(ParkingLot::isFull);
+    }
 }

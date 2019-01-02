@@ -25,7 +25,9 @@ public class ParkingManager {
             }
         }
         for (ParkingBoy parkingBoy : parkingBoys) {
-            return parkingBoy.park(car);
+            if (!parkingBoy.isFull()) {
+                return parkingBoy.park(car);
+            }
         }
         throw new ParkingLotFullException();
     }

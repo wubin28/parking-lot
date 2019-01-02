@@ -3,8 +3,6 @@ package cc.oobootcamp.parkinglot;
 import cc.oobootcamp.parkinglot.exception.ParkingLotFullException;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -38,5 +36,20 @@ class ParkingManagerTest {
         Car car = new Car();
         Ticket ticket = parkingManager.park(car);
         assertSame(car, parkingLot.pick(ticket));
+    }
+
+    @Test
+    void should_park_successfully_when_park_given_second_parking_boy_managed_parking_lot_has_space_and_first_is_full() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.park(new Car());
+
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        ParkingBoy superParkingBoy = new SuperParkingBoy(parkingLot);
+        ParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLot2);
+
+        ParkingManager parkingManager = new ParkingManager(superParkingBoy, smartParkingBoy);
+        Car car = new Car();
+        Ticket ticket = parkingManager.park(car);
+        assertSame(car, parkingLot2.pick(ticket));
     }
 }
