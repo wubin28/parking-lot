@@ -27,4 +27,8 @@ public abstract class ParkingBoy {
     public boolean isFull() {
         return parkingLots.stream().allMatch(ParkingLot::isFull);
     }
+
+    public boolean contains(Ticket ticket) {
+        return parkingLots.stream().anyMatch(parkingLot -> parkingLot.contains(ticket));
+    }
 }

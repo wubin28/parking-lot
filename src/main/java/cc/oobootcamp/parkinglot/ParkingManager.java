@@ -38,6 +38,12 @@ public class ParkingManager {
                 return parkingLot.pick(ticket);
             }
         }
+
+        for (ParkingBoy parkingBoy : parkingBoys) {
+            if (parkingBoy.contains(ticket)) {
+                return parkingBoy.pick(ticket);
+            }
+        }
         return null;
     }
 }
